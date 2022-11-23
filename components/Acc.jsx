@@ -16,12 +16,13 @@ export default function Acc(props){
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Question {props.number}</Typography>
+          <Typography>Question {props.question.number}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            {props.question}
+            {props.question.question}
           </Typography>
+          <Button onClick={()=>{props.emitter(JSON.stringify(props.question))}} >start</Button>
         </AccordionDetails>
       </Accordion>
     </div>

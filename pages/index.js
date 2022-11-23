@@ -33,7 +33,7 @@ const Home = () => {
     socket.emit('input-change', input)
   }
   const emitter=(e)=>{
-    socket.emit('')
+    socket.emit('input-change',e);
   }
 
   return (

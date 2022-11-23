@@ -23,7 +23,7 @@ const socketInitializer = async () => {
 
   socket.on('update-input', msg => {
     setInput(msg)
-    setQuestion({...Question,question:msg});
+    setQuestion(JSON.parse(msg));
   })
 }
 const onChangeHandler = (e) => {
