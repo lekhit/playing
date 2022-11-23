@@ -1,6 +1,7 @@
-import logo from './resources/logo.png'
-import google from './resources/google.svg'
-import shark from './resources/must.jpeg'
+import logo from '../public/resources/logo.png'
+import google from '../public/resources/google.svg'
+import shark from '../public/resources/must.jpeg'
+import Image from 'next/image'
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
@@ -27,7 +28,7 @@ function Login(){
     return <div className="rounded-xl bg-white md:h-[600px] md:w-[900px] h-full w-[300px] sm:h-[600px] sm:w-[400px]">
     <div className='sm:p-16 p-2 flex relative justify-around'>
         <div className='m-4 z-50'>
-            <img src={logo} className='mt-4' />
+            <Image src={logo} className='mt-4' />
             <div className='text-[30px] text-violet-800'>Login</div>
             <p className='my-2 text-gray-600'>Login to Start test Fast!</p>
             <label className='text-[15px]'>Email*</label>
@@ -50,14 +51,14 @@ function Login(){
             </div>
             <div className='cursor-pointer rounded-2xl bg-gradient-to-r from-[#8cabff] to-[#7c5cff] text-center text-white text-[20px] p-1 my-3'><button  onClick={() => logInWithEmailAndPassword(email, password)}>Login</button></div>
             <div onClick={loginHandler} className='cursor-pointer flex outline outline-2 rounded-2xl outline-gray-300 items-center justify-center'>
-                <img src={google} className='h-[16px] m-2'
+                <Image src={google} className='h-[16px] m-2'
                 />
                 <div>Continue with Google</div>
             </div>
             <div className='cursor-pointer rounded-2xl outline outline-1 p-2 hover:text-white hover:bg-gradient-to-r from-[#8cabff] to-[#7c5cff] hover:from my-4 text-violet-900 text-[15px] text-center outline-[#7c5cff]'>Register</div>
         </div>
         <div className='ml-4 md:relative absolute z-40'>
-            <img src={shark} className='h-[500px] opacity-30 md:opacity-100 blur-md md:blur-none'/>
+            <Image src={shark} className='h-[500px] opacity-30 md:opacity-100 blur-md md:blur-none'/>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
-import back from '../resources/crown.png'
-import sback from '../resources/second.png'
-import tback from '../resources/third.png'
+import back from '../public/resources/crown.png'
+import sback from '../public/resources/second.png'
+import tback from '../public/resources/third.png'
 
 function Leader() {
 
