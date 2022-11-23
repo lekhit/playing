@@ -32,6 +32,9 @@ const Home = () => {
   const onClickHandler=(e)=>{
     socket.emit('input-change', input)
   }
+  const emitter=(e)=>{
+    socket.emit('')
+  }
 
   return (
   <div>
