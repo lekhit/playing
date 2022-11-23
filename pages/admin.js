@@ -26,7 +26,11 @@ const socketInitializer = async () => {
 
 const emitter=(e)=>{
   console.log(e);
-    socket.emit('input-change',e);
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 5);
+  e.time=time
+  e.colors=["bg-white","bg-white","bg-white","bg-white"]
+    socket.emit('input-change',JSON.stringify( e));
 }
 
   const questions=[

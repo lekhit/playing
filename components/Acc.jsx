@@ -22,7 +22,7 @@ export default function Acc(props){
           <Typography>
             {props.question.question}
           </Typography>
-          <Button onClick={()=>{props.emitter(JSON.stringify(props.question))}} >start</Button>
+          <Button onClick={()=>{props.emitter(props.question)}} >start</Button>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -36,7 +36,7 @@ const onChangeHandler = (e) => {
         
         <div className="absolute h-screen bottom-2/3 opacity-30 right-screen sm:right-2/3 w-full sm:w-1/3 rounded-r-full bg-red-300"></div>
         <div className="absolute h-screen bottom-2/3 opacity-30 left-screen sm:left-2/3 w-full sm:w-1/3 rounded-l-full bg-red-300"></div>
-        <Questions question={Question}/>
+        <Questions question={Question} user="bahubali"/>
     </div>
 }
 
