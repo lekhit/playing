@@ -14,23 +14,25 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
-  score Int @default(0)
+  score Int     @default(0)
 }
 
-model Answers{
- id    Int     @id @default(autoincrement())
- question Int @unique 
- option Int 
+model Answers {
+  id       Int @id @default(autoincrement())
+  question Int @unique
+  option   Int
 }
 
-
-model Questions{
- id    Int     @id @default(autoincrement())
- number Int @unique
- question String @unique
- option1 String
- option2 String
- option3 String
- option4 String
+model Questions {
+  id       Int      @id @default(autoincrement())
+  number   Int      @unique
+  question String   @unique
+  option   Option[]
 }
 
+model Option {
+  id          Int        @id @default(autoincrement())
+  choise      String
+  Questions   Questions? @relation(fields: [questionsId], references: [id])
+  questionsId Int?
+}
