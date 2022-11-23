@@ -21,8 +21,11 @@ function Login(){
         console.log('Loading')
         return;
       }
-      if (user) {navigate.push("/nickname"); localStorage.setItem('user',{name:user.displayName,email:user.email});
-        console.log(localStorage.getItem('user'));    
+      if (user) {navigate.push("/nickname");
+      localStorage.setItem('name',user.displayName);
+      localStorage.setItem('email',user.email);
+        console.log(localStorage.getItem('user'));
+        console.log(user.displayName);    
     }
     }, [user, loading]);
     

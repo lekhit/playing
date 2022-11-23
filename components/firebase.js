@@ -17,15 +17,14 @@ import {
     addDoc,
 } from "firebase/firestore";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyBg3gtqIMD8z2y58v3UBFNOSs7JNrDii-4",
     authDomain: "database-6ad9c.firebaseapp.com",
     projectId: "database-6ad9c",
     storageBucket: "database-6ad9c.appspot.com",
     messagingSenderId: "978445725303",
-    appId: "1:978445725303:web:fbaced4d65600e48082072"
-};
+    appId: "1:978445725303:web:000534687eb0a357082072"  
+  };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
