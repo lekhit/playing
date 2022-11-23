@@ -1,7 +1,7 @@
 import back from '../public/resources/crown.png'
 import sback from '../public/resources/second.png'
 import tback from '../public/resources/third.png'
-
+import Image from 'next/image'
 function Leader() {
 
     const leader = [[1, 1100, 'Somesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh']]
@@ -23,7 +23,7 @@ function Leader() {
                     <div className='flex justify-around pt-4'>
                         <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
                             <div className='m-2'>
-                                <img src={back} />
+                                <Image src={back} alt={'Loading'} />
                             </div>
                             <div className='text-gray-500'>
                                 {leader[0][2]}
@@ -34,7 +34,7 @@ function Leader() {
                         </div>
                         <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
                             <div className='m-2'>
-                                <img src={sback}  className='h-[60px]'/>
+                                <Image src={sback} height={60} alt={'Loading'}/>
                             </div>
                             <div className='text-gray-500'>
                                 {leader[0][2]}
@@ -45,7 +45,7 @@ function Leader() {
                         </div>
                         <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
                             <div className='m-2'>
-                                <img src={tback} className='h-[60px]'/>
+                                <Image src={tback} height={60} alt={'Loading'}/>
                             </div>
                             <div className='text-gray-500'>
                                 {leader[0][2]}
