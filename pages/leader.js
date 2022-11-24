@@ -1,10 +1,23 @@
-import back from '../public/resources/crown.png'
-import sback from '../public/resources/second.png'
-import tback from '../public/resources/third.png'
+
 import Image from 'next/image'
+import { useEffect,useState } from 'react';
+import LeaderBoard from '../components/leader_panel'
 function Leader() {
 
     const leader = [[1, 1100, 'Somesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh'], [2, 1000, 'Rajesh']]
+    const [result,setResult]=useState([]);
+
+    useEffect( ()=>{
+      let result1=['somesh','rajesh'];
+      const getData= async()=>{
+        const data= await fetch('/api/get_leaders');
+        for(let d in data){
+          result1.push(d.name);
+        }
+      }
+      getData();
+      setResult(result1);
+    },[]);
 
     return <div className='h-screen w-screen relative z-10'>
         <div className='bg-gradient-to-r from-violet-800 to-violet-400 flex items-center justify-center relative h-screen w-screen'>
@@ -19,71 +32,20 @@ function Leader() {
                     <div className='text-[15px] underline'>End Test</div>
                 </div>
                 <div className='text-center text-gray-400'>Date: Nov 23</div>
-                <div>
-                    <div className='flex justify-around pt-4'>
-                        <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
-                            <div className='m-2'>
-                                <Image src={back} alt={'Loading'} />
-                            </div>
-                            <div className='text-gray-500'>
-                                {leader[0][2]}
-                            </div>
-                            <div className='rounded-full bg-[#f0f7f7] text-[15px] text-[#64d8d8] px-6 py-1 m-3 font-bold'>
-                                {leader[0][1]}
-                            </div>
-                        </div>
-                        <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
-                            <div className='m-2'>
-                                <Image src={sback} height={60} alt={'Loading'}/>
-                            </div>
-                            <div className='text-gray-500'>
-                                {leader[0][2]}
-                            </div>
-                            <div className='rounded-full bg-[#f0f7f7] text-[15px] text-[#64d8d8] px-6 py-1 m-3 font-bold'>
-                                {leader[0][1]}
-                            </div>
-                        </div>
-                        <div className='flex flex-col justify-center items-center outline outline-1 outline-gray-300 rounded-xl w-1/5 bg-white h-[200px]'>
-                            <div className='m-2'>
-                                <Image src={tback} height={60} alt={'Loading'}/>
-                            </div>
-                            <div className='text-gray-500'>
-                                {leader[0][2]}
-                            </div>
-                            <div className='rounded-full bg-[#f0f7f7] text-[15px] text-[#64d8d8] px-6 py-1 m-3 font-bold'>
-                                {leader[0][1]}
-                            </div>
-                        </div>
+                
+                
+                    <LeaderBoard/>
+                    
+                       
+                       
                         
-                    </div>
-                    <div className=' mx-20 mt-8 text-gray-600'>
-                        <div className='px-8 shadow-md outline outline-1 outline-gray-300 flex justify-around items-center bg-white m-2 rounded-md h-[40px]'>
-                            <div>{leader[3][0]}</div>
-                            <div>{leader[3][2]}</div>
-                            <div>Points: {leader[3][1]}</div>
-                        </div>
-                        <div className='shadow-md px-8 outline outline-1 outline-gray-300 flex justify-around items-center bg-white m-2 rounded-md h-[40px]'>
-                            <div>{leader[3][0]}</div>
-                            <div>{leader[3][2]}</div>
-                            <div>Points: {leader[3][1]}</div>
-                        </div>
-                        <div className='shadow-md px-8 outline outline-1 outline-gray-300 flex justify-around items-center bg-white m-2 rounded-md h-[40px]'>
-                            <div>{leader[3][0]}</div>
-                            <div>{leader[3][2]}</div>
-                            <div>Points: {leader[3][1]}</div>
-                        </div>
-                        <div className='shadow-md px-8 outline outline-1 outline-gray-300 flex justify-around items-center bg-white m-2 rounded-md h-[40px]'>
-                            <div>{leader[3][0]}</div>
-                            <div>{leader[3][2]}</div>
-                            <div>Points: {leader[3][1]}</div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
         
         
-    </div>
+    
 
 }
 
