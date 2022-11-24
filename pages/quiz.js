@@ -15,7 +15,7 @@ const [Question,setQuestion]=useState({number:'1',question:'What the fastest tra
 
 const socketInitializer = async () => {
   await fetch('/api/socket');
-  socket = io()
+  socket = io({"rejectUnauthorized" : false})
 
   socket.on('connect', () => {
     console.log('connected')

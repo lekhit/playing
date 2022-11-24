@@ -6,7 +6,13 @@ export default  async function handler  (req, res){
   const {body}=req;
   const user = await prisma.user.upsert(
     {
-      data:{
+      where:{
+        email:body.email
+      },
+      update:{
+        name:body.nickname
+      },
+      create:{
         name:body.nickname,
         email:body.email
       }

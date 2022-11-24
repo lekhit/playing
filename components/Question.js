@@ -11,6 +11,7 @@ function Questions(props) {
   const[selected,setSelected]=useState(-1);
   const [colors,setColors]=useState(["bg-white","bg-white","bg-white","bg-white"]);
   const [isOver,setOver]=useState(false);
+  const [button_color,setButtoncolor]=useState("green")
  const [clickTime,setClicktime]=useState(15);
   function MyTimer( {expiryTimestamp} ) {
     const {
@@ -18,6 +19,7 @@ function Questions(props) {
       isRunning,
     } = useTimer({ expiryTimestamp, onExpire:() => {
       setOver(true);
+      setButtoncolor("green")
     }});
   
     const handleClick=async (e)=>{
@@ -31,6 +33,7 @@ function Questions(props) {
     }
     const handleSubmit=async(e)=>{
       setOver(true);
+      
       (async () => {
         const rawResponse = await fetch('/api/send_answer', {
           method: 'POST',
@@ -41,9 +44,10 @@ function Questions(props) {
           body: JSON.stringify({number:props.question.number,select:selected,time:seconds, user:login_a.nick ,email:login_a.email})
         });
         const content = await rawResponse.json();
-      
+        
         console.log(content);
       })();
+      setButtoncolor('purple')
     }
     
     // useEffect(()=>(console.log(selected)),[selected])
@@ -53,7 +57,7 @@ function Questions(props) {
       <div className='flex justify-center'>
       <div>
         <div className='bg-transparent flex mt-2 m-4 justify-center items-center w-[50px] h-[50px] rounded-full outline outline-4 outline-violet-900'>
-              <span className='text-white text-[30px]'>{seconds}</span>
+              <span className='select-none text-white text-[30px]'>{seconds}</span>
           </div>
           
   </div>  
@@ -62,10 +66,10 @@ function Questions(props) {
           <h1 className='text-white font-bold sm:text-[30px] text-[20px] text-center'>{props.question.question}</h1>
           <div className='text-center text-[20px] text-violet-500 content-center mt-8 flex flex-wrap justify-around'>
             {props.question.options.map((option,id)=>{
-              return (<div key={id}  onClick={handleClick} id={id} className={`${colors[id]}  p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>{option}</div>
+              return (<div key={id}  onClick={handleClick} id={id} className={`${colors[id]} cursor-pointer select-none p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>{option}</div>
               )
             })}
-            <div onClick={handleSubmit}  className='bg-green-400  p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md'>Submit</div>
+            <div onClick={handleSubmit}  className={`bg-${button_color}-400 cursor-pointer select-none p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>Submit</div>
                </div>
       </div>
   </div>
