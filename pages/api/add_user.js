@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 export default  async function handler  (req, res){
   const {body}=req;
-  const user = await prisma.user.create(
+  const user = await prisma.user.upsert(
     {
       data:{
         name:body.nickname,

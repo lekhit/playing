@@ -26,6 +26,16 @@ const firebaseConfig = {
     appId: "1:978445725303:web:000534687eb0a357082072"  
   };
 
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBc4WUZi-S-Yc7cLGxtbo0i12ouvAQkuLM",
+//     authDomain: "quizee-f69f7.firebaseapp.com",
+//     projectId: "quizee-f69f7",
+//     storageBucket: "quizee-f69f7.appspot.com",
+//     messagingSenderId: "768830780178",
+//     appId: "1:768830780178:web:3ddda3a22531960454f9cb",
+//     measurementId: "G-Y38WGHK2KH"
+//   };
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
