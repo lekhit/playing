@@ -27,7 +27,7 @@ function Login(){
         console.log(localStorage.getItem('user'));
         console.log(user.displayName);    
     }
-    }, [user, loading]);
+    }, [user, loading,navigate]);
     
     return <div className="rounded-xl bg-white md:h-[600px] md:w-[900px] h-full w-[300px] sm:h-[600px] sm:w-[400px]">
     <div className='sm:p-16 p-2 flex relative justify-around'>

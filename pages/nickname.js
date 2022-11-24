@@ -9,6 +9,22 @@ function Nickname(){
         console.log('kush to gadbad he daya');
         localStorage.setItem('nick',nick)
         console.log(nick);
+
+
+        (async () => {
+          let email=localStorage.getItem("email")
+            const rawResponse = await fetch('/api/add_user', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({nickname:nick,email:email})
+            });
+            const content = await rawResponse.json();
+          
+            console.log(content);
+          })();
         navigator.push('/quiz');
     }
 

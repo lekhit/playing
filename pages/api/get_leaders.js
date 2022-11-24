@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 export default  async function handler  (req, res){
   const usersWithPosts = await prisma.user.findMany(
     {
-    take:10,
+    take:8,
     orderBy:[{score:'desc'}]});
     res.status(200).json(usersWithPosts)
 }
