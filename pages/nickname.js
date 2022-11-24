@@ -1,18 +1,22 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react';
+import {useAppContext} from '../context/notes/state'
+
 
 function Nickname(){
     const navigator = useRouter();
     let [nick,setnick] = useState('');
-    
+    const login_a=useAppContext();
     function onClickHandler(event){
         console.log('kush to gadbad he daya');
-        localStorage.setItem('nick',nick)
-        console.log(nick);
+        //localStorage.setItem('nick',nick)
+        login_a.setNickname(nick);
+        console.log(login_a.nick);
 
 
         (async () => {
-          let email=localStorage.getItem("email")
+          //let email=localStorage.getItem("email")
+          let email=login_a.email;
             const rawResponse = await fetch('/api/add_user', {
               method: 'POST',
               headers: {
@@ -25,6 +29,7 @@ function Nickname(){
           
             console.log(content);
           })();
+          console.log(login_a.email);
         navigator.push('/quiz');
     }
 

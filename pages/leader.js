@@ -1,4 +1,4 @@
-
+import Notecontext from '../context/notes/state'
 import Image from 'next/image'
 import { useEffect,useState } from 'react';
 import LeaderBoard from '../components/leader_panel'

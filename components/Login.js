@@ -2,6 +2,7 @@ import logo from '../public/resources/logo.png'
 import google from '../public/resources/google.svg'
 import shark from '../public/resources/must.jpeg'
 import Image from 'next/image'
+import {useAppContext} from '../context/notes/state'
 
 import React, { use, useEffect, useState } from "react";
 import { useRouter } from 'next/router'
@@ -9,6 +10,7 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login(){
+    const login_a=useAppContext()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
@@ -22,12 +24,10 @@ function Login(){
         return;
       }
       if (user) {navigate.push("/nickname");
-      localStorage.setItem('name',user.displayName);
-      localStorage.setItem('email',user.email);
-        console.log(localStorage.getItem('user'));
+login_a.setEmail(user.email);
         console.log(user.displayName);    
     }
-    }, [user, loading,navigate]);
+    }, [user, loading,navigate,login_a]);
     
     return <div className="rounded-xl bg-white md:h-[600px] md:w-[900px] h-full w-[300px] sm:h-[600px] sm:w-[400px]">
     <div className='sm:p-16 p-2 flex relative justify-around'>

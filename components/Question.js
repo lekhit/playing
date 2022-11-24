@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTimer } from 'react-timer-hook';
-
+import {useAppContext} from '../context/notes/state'
 
   //const time = new Date();
   //time.setSeconds(time.getSeconds() + 5);
 
 
 function Questions(props) {
+  const login_a=useAppContext();
   const[selected,setSelected]=useState(-1);
   const [colors,setColors]=useState(["bg-white","bg-white","bg-white","bg-white"]);
   const [isOver,setOver]=useState(false);
@@ -37,7 +38,7 @@ function Questions(props) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({number:props.question.number,select:selected,time:seconds,user:props.user,email:props.email})
+          body: JSON.stringify({number:props.question.number,select:selected,time:seconds, user:login_a.nick ,email:login_a.email})
         });
         const content = await rawResponse.json();
       
