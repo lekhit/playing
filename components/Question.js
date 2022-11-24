@@ -10,34 +10,39 @@ function Questions(props) {
   const[selected,setSelected]=useState(-1);
   const [colors,setColors]=useState(["bg-white","bg-white","bg-white","bg-white"]);
   const [isOver,setOver]=useState(false);
- 
+ const [clickTime,setClicktime]=useState(15);
   function MyTimer( {expiryTimestamp} ) {
     const {
       seconds,   
       isRunning,
     } = useTimer({ expiryTimestamp, onExpire:() => {
+      setOver(true);
     }});
   
     const handleClick=async (e)=>{
-      if(seconds===0) return
+      if(isOver) return
     setColors((colors)=>{if(selected===-1) return colors; colors[selected]="bg-white";colors[e.target.id]="bg-amber-300";
     return colors;
     })
     setSelected(e.target.id);
-    (async () => {
-      const rawResponse = await fetch('/api/send_answer', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({number:props.question.number,select:selected,time:seconds,user:props.user})
-      });
-      const content = await rawResponse.json();
     
-      console.log(content);
-    })();
     //console.log(e.target.id,colors)
+    }
+    const handleSubmit=async(e)=>{
+      setOver(true);
+      (async () => {
+        const rawResponse = await fetch('/api/send_answer', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({number:props.question.number,select:selected,time:seconds,user:props.user,email:props.email})
+        });
+        const content = await rawResponse.json();
+      
+        console.log(content);
+      })();
     }
     
     // useEffect(()=>(console.log(selected)),[selected])
@@ -59,6 +64,7 @@ function Questions(props) {
               return (<div key={id}  onClick={handleClick} id={id} className={`${colors[id]}  p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>{option}</div>
               )
             })}
+            <div onClick={handleSubmit}  className='bg-green-400  p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md'>Submit</div>
                </div>
       </div>
   </div>

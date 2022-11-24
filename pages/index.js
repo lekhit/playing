@@ -1,53 +1,11 @@
-import { useEffect, useState } from 'react'
-import io from 'socket.io-client'
-let socket;
+import Login from '../components/Login';
 
-const Home = () => {
-  const [input, setInput] = useState('')
+function Login_page() {
 
-  useEffect(() => {
-      socketInitializer();
-      return () => {
-        console.log("This will be logged on unmount");
-      }
-    })
-
-  const socketInitializer = async () => {
-    await fetch('/api/socket');
-    socket = io()
-
-    socket.on('connect', () => {
-      console.log('connected')
-    })
-
-    socket.on('update-input', msg => {
-      setInput(msg)
-    })
-  }
-
-  const onChangeHandler = (e) => {
-    setInput(e.target.value)
-    //socket.emit('input-change', e.target.value)
-  }
-  const onClickHandler=(e)=>{
-    socket.emit('input-change', input)
-  }
-  const emitter=(e)=>{
-    socket.emit('input-change',e);
-  }
-
-  return (
-  <div>
-    <input
-      placeholder="Type something"
-      value={input}
-      onChange={onChangeHandler}
-    />
-    <button onClick={onClickHandler}>
-check
-    </button>
+    return <div className="p-8 flex justify-center items-center w-screen h-full min-h-screen bg-gradient-to-t from-violet-800 to-violet-400">
+        <Login/>
     </div>
-  )
+
 }
 
-export default Home;
+export default Login_page;
