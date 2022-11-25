@@ -55,7 +55,7 @@ export default function Acc(props){
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Question {props.question.number}</Typography>
+          <Typography >Question {props.question.number}</Typography>
         </AccordionSummary>
         <AccordionDetails>
 
@@ -68,7 +68,7 @@ export default function Acc(props){
 </div>  
     </div>
 
-          <Typography sx={{align:"textCenter"}}>
+          <Typography variant={'h1'}>
           {props.question.question}
          
 
