@@ -30,7 +30,7 @@ function Nickname(){
             console.log(content);
           })();
           console.log(login_a.email);
-        navigator.push('/quiz');
+        navigator.push('/reply');
     }
 
     function changeHandler(event){
