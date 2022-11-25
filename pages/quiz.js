@@ -7,29 +7,13 @@ function Quiz(){
   const [input, setInput] = useState('')
 const [Question,setQuestion]=useState({number:'1',question:'What the fastest train in the India and what is its maximum speed or operating speed?',options:['Vande Bharat,130','Rajdhani Express ,120','Duranto Express,130','Bulllet Train,230']});
   useEffect(() => {
-    socketInitializer();
+
     return () => {
       console.log("This will be logged on unmount");
     }
   })
 
-const socketInitializer = async () => {
-  await fetch('/api/socket');
-  socket = io({"rejectUnauthorized" : false})
 
-  socket.on('connect', () => {
-    console.log('connected')
-  })
-
-  socket.on('update-input', msg => {
-    setInput(msg)
-    setQuestion(JSON.parse(msg));
-  })
-}
-const onChangeHandler = (e) => {
-  setInput(e.target.value)
-  socket.emit('input-change', e.target.value)
-}
 //const nickname=localStorage.getItem('nick')
 //const email=localStorage.getItem('email')
     //let Question = {number:'1',question:'What the fastest train in the India and what is its maximum speed or operating speed?',options:['Vande Bharat,130','Rajdhani Express ,120','Duranto Express,130','Bulllet Train,230']}

@@ -13,6 +13,7 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
+  opt String
   name  String?
   score Int     @default(0)
 }
@@ -25,8 +26,10 @@ model Answers {
 
 model Questions {
   id       Int      @id @default(autoincrement())
-  number   Int      @unique
+  number   Int      @unique 
   question String   @unique
+  state String  @default("inactive")
+  time String   @default("")
   option   Option[]
 }
 

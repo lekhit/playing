@@ -30,13 +30,31 @@ const handleUpdate=(e)=>{
 
 
 const emitter=(e)=>{
-  console.log(e);
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + parseInt(timer));
-  e.time=time
-  e.colors=["bg-white","bg-white","bg-white","bg-white"]
-    socket.emit('input-change',JSON.stringify( e));
+  (async () => {
+    const rawResponse = await fetch('/api/update_question_state', 
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({state:""})
+    }
+    );
+    const content = await rawResponse.json();
+    
+    console.log(content);
+  })();
 }
+const [Questions,setQuestions]=useState();
+useEffect(()=>{
+  (async () => {
+    const rawResponse = await fetch('/api/showq' );
+    const content = await rawResponse.json();
+    setQuestions(content);
+    //console.log(content);
+  })();
+})
 
   const questions=[
     {number:'1',question:'What the fastest train in the India and what is its maximum speed or operating speed?',
