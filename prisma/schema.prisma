@@ -13,9 +13,25 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  opt String
+  opt String    @default("007")
   name  String?
   score Int     @default(0)
+}
+model Answer1{
+id    Int     @id @default(autoincrement())
+number Int @unique
+ans String @default("a")
+time Int    @default(15)      
+timestamp String?
+
+}
+
+model Answer{
+id    Int     @id @default(autoincrement())
+ans String @default("a")
+time Int    @default(15)      
+timestamp String?
+
 }
 
 model Answers {
@@ -31,6 +47,7 @@ model Questions {
   state String  @default("inactive")
   time String   @default("")
   option   Option[]
+  answer String?
 }
 
 model Option {
