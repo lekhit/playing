@@ -11,15 +11,16 @@ function Questions(props) {
   const[selected,setSelected]=useState(-1);
   const [colors,setColors]=useState(["bg-white","bg-white","bg-white","bg-white"]);
   const [isOver,setOver]=useState(false);
-  const [button_color,setButtoncolor]=useState("green")
- const [clickTime,setClicktime]=useState(15);
+  const [button_state,setButtonstate]=useState({color:"green",text:"submit"})
+  const[question,setQuestion]=useState({count:"1" ,number:'1',question:'What the fastest train in the India and what is its maximum speed or operating speed?',options:['Vande Bharat,130','Rajdhani Express ,120','Duranto Express,130','Bulllet Train,230']})
+ 
   function MyTimer( {expiryTimestamp} ) {
     const {
       seconds,   
       isRunning,
     } = useTimer({ expiryTimestamp, onExpire:() => {
       setOver(true);
-      setButtoncolor("green")
+      setButtonstate({color:"sky",text:"request question"})
     }});
   
     const handleClick=async (e)=>{
@@ -33,7 +34,7 @@ function Questions(props) {
     }
     const handleSubmit=async(e)=>{
       setOver(true);
-      
+      if(button_state.color==="green"){
       (async () => {
         const rawResponse = await fetch('/api/send_answer', {
           method: 'POST',
@@ -47,7 +48,19 @@ function Questions(props) {
         
         console.log(content);
       })();
-      setButtoncolor('purple')
+      setButtonstate({color:"purple",text:"submitted"})}
+      if(button_state.color==="sky"){
+        (async () => {
+          const rawResponse = await fetch('/api/request_question', {  });
+          const content = await rawResponse.json();
+          if(content.count==="0") return;
+          setButtonstate({color:"green",text:"submit"});
+          setQuestion(content);
+          resetStates();
+          console.log(content);
+        })();
+
+      }
     }
     
     // useEffect(()=>(console.log(selected)),[selected])
@@ -63,13 +76,13 @@ function Questions(props) {
   </div>  
       </div>
       <div className="mt-6">
-          <h1 className='text-white font-bold sm:text-[30px] text-[20px] text-center'>{props.question.question}</h1>
+          <h1 className='text-white font-bold sm:text-[30px] text-[20px] text-center'>{question.question}</h1>
           <div className='text-center text-[20px] text-violet-500 content-center mt-8 flex flex-wrap justify-around'>
-            {props.question.options.map((option,id)=>{
+            {question.options.map((option,id)=>{
               return (<div key={id}  onClick={handleClick} id={id} className={`${colors[id]} cursor-pointer select-none p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>{option}</div>
               )
             })}
-            <div onClick={handleSubmit}  className={`bg-${button_color}-400 cursor-pointer select-none p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>Submit</div>
+            <div onClick={handleSubmit}  className={`bg-${button_state.color}-400 cursor-pointer select-none p-1 md:p-2 w-[250px] md:m-4 m-3  rounded-md`}>{button_state.text}</div>
                </div>
       </div>
   </div>
