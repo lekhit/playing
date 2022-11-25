@@ -86,7 +86,7 @@ function Questions(props) {
   </div>
   <div className="mt-6">
 
-      <div className='text-center text-[20px] text-violet-500 content-center mt-8 flex flex-wrap justify-around'>
+      <div className='text-center text-[20px] text-red-500 content-center mt-8 flex flex-wrap justify-around'>
 
       <div id={0}   onClick={handleClick} className={`bg-indigo-500 cursor-pointer select-none p-1 md:p-2 w-[550px] md:m-4 m-3  rounded-md`}>a</div>
       <div id={1}   onClick={handleClick} className={`bg-yellow-400 cursor-pointer select-none p-1 md:p-2 w-[550px] md:m-4 m-3  rounded-md`}>b</div>
